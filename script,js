@@ -1,0 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('.nav-list');
+
+    // メニューボタンがクリックされたときの処理
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // モバイルメニュー用CSSクラスの追加（JSで制御するため）
+    // style.cssに .nav-list.active { display: flex; ... } のような記述が必要です
+    // (今回のCSSには簡易的なレスポンシブ記述が含まれています)
+});
