@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黒子新桜鉄道 | 公式サイト</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <h1 class="logo">黒子新桜鉄道 <span class="en-name">KNR</span></h1>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#status">運行情報</a></li>
+                    <li><a href="#lines">路線案内</a></li>
+                    <li><a href="#stations">駅名一覧</a></li>
+                    <li><a href="#contact">窓口</a></li>
+                </ul>
+                <button class="menu-toggle" aria-expanded="false">
+                    <span class="kanji-menu">献立</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>新緑の風、鉄路を駆ける。</h2>
+                <p>都市と自然を繋ぐ、黒子新桜のネットワーク。</p>
+            </div>
+        </section>
+
+        <section id="status" class="content-section status-section">
+            <div class="section-header">
+                <h3>運行情報</h3>
+                <span class="last-updated">現在時刻 更新</span>
+            </div>
+            
+            <div class="status-card delay">
+                <div class="status-icon">⚠️ 遅延</div>
+                <div class="status-details">
+                    <h4>黒子本線</h4>
+                    <p>本日7時15分頃、新桜橋駅での車両点検の影響により、<strong>一部列車に10分〜20分程度の遅れ</strong>が出ております。</p>
+                </div>
+            </div>
+
+            <div class="status-card normal">
+                <div class="status-icon">◎ 平常</div>
+                <div class="status-details">
+                    <h4>桜ノ宮線</h4>
+                    <p>現在、平常通り運転しております。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lines" class="content-section lines-section">
+            <h3>路線のご案内</h3>
+            <div class="line-cards">
+                <div class="line-card kuroko-line">
+                    <div class="line-symbol">K</div>
+                    <div class="line-info">
+                        <h4>黒子本線</h4>
+                        <span class="en-line">Kuroko Main Line</span>
+                        <p>都市部「黒子中央」から郊外の自然豊かな「天空町」を結ぶ大動脈。</p>
+                        <ul class="line-specs">
+                            <li>区間：黒子中央 〜 天空町</li>
+                            <li>ラインカラー：<span class="color-box bg-green"></span> 萌黄色</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="line-card sakura-line">
+                    <div class="line-symbol">S</div>
+                    <div class="line-info">
+                        <h4>桜ノ宮線</h4>
+                        <span class="en-line">Sakuranomiya Line</span>
+                        <p>新桜橋から分岐し、歴史ある桜の名所へ続く観光路線。</p>
+                        <ul class="line-specs">
+                            <li>区間：新桜橋 〜 桜ノ宮</li>
+                            <li>ラインカラー：<span class="color-box bg-pink"></span> 桜色</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stations" class="content-section stations-section">
+            <h3>駅名一覧</h3>
+            <p class="section-lead">黒子本線 [K] Station List</p>
+            
+            <div class="route-map-container">
+                <ul class="route-map">
+                    <li class="station-item">
+                        <span class="station-number">K01</span>
+                        <div class="station-dot big"></div>
+                        <div class="station-name">
+                            <ruby>黒子中央<rt>くろこちゅうおう</rt></ruby>
+                            <span class="en-station">Kuroko-Chuo</span>
+                        </div>
+                        <div class="transfers"><span class="badge">始発</span> 地下鉄東西線 乗換</div>
+                    </li>
+                    <li class="station-item">
+                        <span class="station-number">K02</span>
+                        <div class="station-dot"></div>
+                        <div class="station-name">
+                            <ruby>北黒子<rt>きたくろこ</rt></ruby>
+                            <span class="en-station">Kita-Kuroko</span>
+                        </div>
+                    </li>
+                    <li class="station-item">
+                        <span class="station-number">K03</span>
+                        <div class="station-dot transfer-dot"></div>
+                        <div class="station-name">
+                            <ruby>新桜橋<rt>しんさくらばし</rt></ruby>
+                            <span class="en-station">Shin-Sakurabashi</span>
+                        </div>
+                        <div class="transfers"><span class="badge pink">乗換</span> 桜ノ宮線 [S]</div>
+                    </li>
+                    <li class="station-item">
+                        <span class="station-number">K04</span>
+                        <div class="station-dot"></div>
+                        <div class="station-name">
+                            <ruby>緑ヶ丘<rt>みどりがおか</rt></ruby>
+                            <span class="en-station">Midorigaoka</span>
+                        </div>
+                    </li>
+                    <li class="station-item">
+                        <span class="station-number">K05</span>
+                        <div class="station-dot big"></div>
+                        <div class="station-name">
+                            <ruby>天空町<rt>てんくうまち</rt></ruby>
+                            <span class="en-station">Tenku-Machi</span>
+                        </div>
+                        <div class="transfers"><span class="badge">終点</span> 登山ケーブル 乗換</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 黒子新桜鉄道 KNR. <br>安全運行を第一に。お客様の旅を支えます。</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
