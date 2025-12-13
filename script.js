@@ -24,10 +24,10 @@ const FARE_DATA = {
 // themeはCSSで定義した色（green, pink, koyoなど）を指定してください。
 const ROUTE_DATA = [
     {
-        id: 'HirosakiS',
+        id: 'hirosakiS',
         code: 'HS',
         name: '広崎新幹線',
-        theme: 'HirosakiS',
+        theme: 'hirosakiS',
         stations: [
             { code: 'H01', name_jp: '白野', name_rt: 'しらの', type: 'normal', transfer: [] },
             { code: 'H02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [] },
