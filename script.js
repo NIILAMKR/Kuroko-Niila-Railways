@@ -25,41 +25,28 @@ const FARE_DATA = {
 const ROUTE_DATA = [
     {
         id: 'hirosakiS',
-        code: 'HS',
+        code: 'H',
         name: '広崎新幹線',
         theme: 'hirosakiS',
         stations: [
-            { code: 'H01', name_jp: '白野', name_rt: 'しらの', type: 'normal', transfer: [] },
-            { code: 'H02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [] },
-            { code: 'H03', name_jp: '広崎', name_rt: 'ひろさき', type: 'transfer', transfer: ['ER線,海急線'] },
-            { code: 'H04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER線,T,K'] },
-            { code: 'H05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮線'] }
+            { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'normal', transfer: [] },
+            { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [] },
+            { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'transfer', transfer: ['ER線,海急線'] },
+            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER線,T,K'] },
+            { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮線'] }
         ]
     },
     {
-        id: 'sakura',
-        code: 'S',
-        name: '桜ノ宮線',
-        theme: 'pink',
+        id: 'hirosakiM',
+        code: 'HM',
+        name: '広崎メトロ',
+        theme: 'hirosakiM',
         stations: [
-            { code: 'K03', name_jp: '新桜橋', name_rt: 'しんさくらばし', type: 'transfer', transfer: ['K'] },
-            { code: 'S02', name_jp: '桜ノ宮', name_rt: 'さくらのみや', type: 'normal', transfer: [] },
-            { code: 'S03', name_jp: '夢見坂', name_rt: 'ゆめみざか', type: 'big', transfer: [] }
-        ]
+            { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'normal', transfer: [] },
+            { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [] },
+            { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'normal', transfer: [] }
+            ]
     },
-    {
-        id: 'koyo',
-        code: 'R',
-        name: '紅葉線',
-        theme: 'koyo',
-        stations: [
-            { code: 'K01', name_jp: '黒子中央', name_rt: 'くろこちゅうおう', type: 'big', transfer: ['K', 'S'] },
-            { code: 'R01', name_jp: '紅葉谷', name_rt: 'こうようたに', type: 'normal', transfer: [] },
-            { code: 'R02', name_jp: '終点', name_rt: 'しゅうてん', type: 'big', transfer: [] }
-        ]
-    }
-];
-
 // ====================================================================
 // KNR鉄道 ロジックエリア (ここは基本的に変更しないでください)
 // ====================================================================
