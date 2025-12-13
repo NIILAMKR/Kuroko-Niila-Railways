@@ -1,3 +1,42 @@
+/* --- 基本設定 --- (変更なし) */
+:root {
+    --main-color: #7ab317;
+    --accent-color: #2e5c33;
+    --sakura-color: #e88bac;
+    --text-color: #333;
+    --bg-color: #f9fdf9;
+    --white: #ffffff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- ヘッダー関連の修正・追加 --- */
+
+/* h1.logoのテキストスタイルは不要になるが、幅確保のため残すか、imgを調整 */
+.logo {
+    /* 元のテキストスタイルを上書き */
+    font-size: 0; /* テキストを非表示にする（imgのaltテキストは残る） */
+    margin: 0;
+}
+
+/* ★追加: ロゴ画像 (KNR_logo.png) のスタイル ★ */
+.logo-img {
+    height: 40px; /* 画像の適切な高さに調整してください */
+    width: auto;
+    display: block;
+}
+
+/* ... (時計、ナビゲーション、ヒーローなどのスタイルは省略) ... */
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    /* ... (他のレスポンシブスタイル) ... */
+    
+    /* ロゴ画像のサイズ調整 (モバイル時) */
+    .logo-img {
+        height: 30px; /* モバイルでは少し小さくする */
+    }
+}
+
 /* --- 基本設定 --- */
 :root {
     --main-color: #7ab317;
