@@ -24,16 +24,16 @@ const FARE_DATA = {
 // themeはCSSで定義した色（green, pink, koyoなど）を指定してください。
 const ROUTE_DATA = [
     {
-        id: 'kuroko',
-        code: 'K',
-        name: '黒子本線',
-        theme: 'green',
+        id: 'HirosakiS',
+        code: 'HS',
+        name: '広崎新幹線',
+        theme: 'HirosakiS',
         stations: [
-            { code: 'K01', name_jp: '黒子中央', name_rt: 'くろこちゅうおう', type: 'big', transfer: ['R', 'S'] },
-            { code: 'K02', name_jp: '北黒子', name_rt: 'きたくろこ', type: 'normal', transfer: [] },
-            { code: 'K03', name_jp: '新桜橋', name_rt: 'しんさくらばし', type: 'transfer', transfer: ['S'] },
-            { code: 'K04', name_jp: '緑ヶ丘', name_rt: 'みどりがおか', type: 'normal', transfer: [] },
-            { code: 'K05', name_jp: '天空町', name_rt: 'てんくうまち', type: 'big', transfer: [] }
+            { code: 'H01', name_jp: '白野', name_rt: 'しらの', type: 'normal', transfer: [] },
+            { code: 'H02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [] },
+            { code: 'H03', name_jp: '広崎', name_rt: 'ひろさき', type: 'transfer', transfer: ['ER線,海急線'] },
+            { code: 'H04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER線,T,K'] },
+            { code: 'H05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮線'] }
         ]
     },
     {
