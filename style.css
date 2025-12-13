@@ -187,6 +187,7 @@ h3 {
 
 /* テーマ別ドットカラー */
 .green-theme .station-dot { border-color: var(--main-color); }
+.hirosakiS-theme .station-dot { border-color: var(--hirosakiS-color); }
 .pink-theme .station-dot { border-color: var(--sakura-color); }
 .koyo-theme .station-dot { border-color: var(--koyo-color); }
 
@@ -197,6 +198,7 @@ h3 {
 .transfers { margin-left: auto; font-size: 0.8rem; }
 .badge { background: #555; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
 .badge.green { background: var(--main-color); }
+.badge.hirosakiS { background: var(--hirosakiS-color); }
 .badge.pink { background: var(--sakura-color); }
 .badge.koyo { background: var(--koyo-color); }
 
