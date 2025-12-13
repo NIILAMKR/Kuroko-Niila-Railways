@@ -20,12 +20,14 @@ const FARE_DATA = {
 };
 
 // 2. 路線データ
+// 新しい路線を追加する場合は、この配列の末尾に新しいオブジェクトを追加してください。
+// themeはCSSで定義した色（green, pink, koyoなど）を指定してください。
 const ROUTE_DATA = [
     {
         id: 'kuroko',
         code: 'K',
         name: '黒子本線',
-        theme: 'green', // CSS変数 `--main-color` を使用
+        theme: 'green',
         stations: [
             { code: 'K01', name_jp: '黒子中央', name_rt: 'くろこちゅうおう', type: 'big', transfer: ['R', 'S'] },
             { code: 'K02', name_jp: '北黒子', name_rt: 'きたくろこ', type: 'normal', transfer: [] },
@@ -38,9 +40,9 @@ const ROUTE_DATA = [
         id: 'sakura',
         code: 'S',
         name: '桜ノ宮線',
-        theme: 'pink', // CSS変数 `--sakura-color` を使用
+        theme: 'pink',
         stations: [
-            { code: 'K03', name_jp: '新桜橋', name_rt: 'しんさくらばし', type: 'transfer', transfer: ['K'] }, // K線と共通駅
+            { code: 'K03', name_jp: '新桜橋', name_rt: 'しんさくらばし', type: 'transfer', transfer: ['K'] },
             { code: 'S02', name_jp: '桜ノ宮', name_rt: 'さくらのみや', type: 'normal', transfer: [] },
             { code: 'S03', name_jp: '夢見坂', name_rt: 'ゆめみざか', type: 'big', transfer: [] }
         ]
@@ -49,9 +51,9 @@ const ROUTE_DATA = [
         id: 'koyo',
         code: 'R',
         name: '紅葉線',
-        theme: 'koyo', // CSS変数 `--koyo-color` を使用
+        theme: 'koyo',
         stations: [
-            { code: 'K01', name_jp: '黒子中央', name_rt: 'くろこちゅうおう', type: 'big', transfer: ['K', 'S'] }, // K線と共通駅
+            { code: 'K01', name_jp: '黒子中央', name_rt: 'くろこちゅうおう', type: 'big', transfer: ['K', 'S'] },
             { code: 'R01', name_jp: '紅葉谷', name_rt: 'こうようたに', type: 'normal', transfer: [] },
             { code: 'R02', name_jp: '終点', name_rt: 'しゅうてん', type: 'big', transfer: [] }
         ]
@@ -59,19 +61,18 @@ const ROUTE_DATA = [
 ];
 
 // ====================================================================
-// KNR鉄道 ロジックエリア
-// このエリアは基本的に変更しないでください
+// KNR鉄道 ロジックエリア (ここは基本的に変更しないでください)
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. 路線図の描画とタブ機能の設定
     const tabsContainer = document.querySelector('.tabs');
     const mapWrapper = document.querySelector('.route-map-wrapper');
-    const allStations = {}; // 全駅のルビ情報を保持
+    const allStations = {}; 
 
     let isFirst = true;
 
+    // 1. 路線図の描画とタブ機能の設定
     ROUTE_DATA.forEach(route => {
         // A. タブボタンの生成
         const btn = document.createElement('button');
@@ -93,17 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // C. 路線図リスト（UL）の生成
         const ul = document.createElement('ul');
-        ul.classList.add('route-map', `${route.theme}-theme`); // テーマクラスを適用
+        ul.classList.add('route-map', `${route.theme}-theme`);
 
         route.stations.forEach(station => {
             // D. 駅要素（LI）の生成
             const li = document.createElement('li');
             li.classList.add('station-item');
             
-            // ルビとナンバリング
+            // 乗換駅かどうかでドットのクラスを決定
+            const dotClass = station.type === 'big' ? 'big' : (station.type === 'transfer' ? 'transfer-dot' : '');
+            
             li.innerHTML = `
                 <span class="station-number">${station.code}</span>
-                <div class="station-dot ${station.type === 'big' ? 'big' : (station.type === 'transfer' ? 'transfer-dot' : '')}"></div>
+                <div class="station-dot ${dotClass}"></div>
                 <div class="station-name">
                     <ruby>${station.name_jp}<rt>${station.name_rt}</rt></ruby>
                 </div>
@@ -113,18 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (station.transfer && station.transfer.length > 0) {
                 const transfersDiv = document.createElement('div');
                 transfersDiv.classList.add('transfers');
-                transfersDiv.innerHTML = `<span class="badge ${route.theme === 'green' ? 'green' : (route.theme === 'pink' ? 'pink' : 'koyo')}">乗換</span> `;
                 
                 station.transfer.forEach(tCode => {
                     if (tCode !== route.code) {
-                        transfersDiv.innerHTML += ` ${tCode}線 `;
+                        // 乗換先のラインコードに対応するバッジクラスを決定 (例: S線ならpink)
+                        const transferRoute = ROUTE_DATA.find(r => r.code === tCode);
+                        const badgeClass = transferRoute ? transferRoute.theme : '';
+                        transfersDiv.innerHTML += `<span class="badge ${badgeClass}">乗換</span> ${tCode}線 `;
                     }
                 });
-                li.appendChild(transfersDiv);
+                if (transfersDiv.innerHTML) {
+                    li.appendChild(transfersDiv);
+                }
             }
 
             ul.appendChild(li);
-            allStations[station.code] = station; // 運賃計算用に情報を保存
+            allStations[station.code] = station;
         });
 
         container.appendChild(ul);
@@ -154,12 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const option = document.createElement('option');
         option.value = FARE_DATA[code];
         
-        // 路線データから駅名を取得して表示
-        const routeCode = code.charAt(0);
-        const stationInfo = allStations[code] || ROUTE_DATA.flatMap(r => r.stations).find(s => s.code === code);
+        const stationInfo = allStations[code];
         const name = stationInfo ? stationInfo.name_jp : '駅名不明';
 
-        option.textContent = `${code} ${name} (${routeCode}線)`;
+        option.textContent = `${code} ${name}`;
         selectElement.appendChild(option);
     }
     
@@ -174,15 +179,17 @@ document.addEventListener('DOMContentLoaded', () => {
         priceDisplay.textContent = '---';
     });
     
-    // アニメーション関数（前回と同じ）
+    // アニメーション関数
     function animateValue(obj, end) {
         let startTimestamp = null;
         const duration = 500;
         const start = 0;
+        
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             obj.innerHTML = Math.floor(progress * (end - start) + start);
+            
             if (progress < 1) {
                 window.requestAnimationFrame(step);
             } else {
@@ -192,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     }
 
-    // 3. 時計機能（前回と同じ）
+    // 3. 時計機能
     const clockElement = document.getElementById('current-time');
     function updateClock() {
         const now = new Date();
@@ -204,17 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock(); 
 
-    // 4. スマホメニュー (前回と同じ)
+    // 4. スマホメニュー
     const menuToggle = document.querySelector('.menu-toggle');
     const navList = document.querySelector('.nav-list');
     if(menuToggle && navList) {
         menuToggle.addEventListener('click', () => {
-            if(navList.style.display === 'flex') {
-                navList.style.display = 'none';
-            } else {
-                navList.style.display = 'flex';
-                // ... (スタイリングのロジックは前回と同じ)
-            }
+            const isActive = navList.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isActive);
         });
     }
 
