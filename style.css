@@ -8,6 +8,7 @@
 :root {
     --main-color: #7ab317; /* 緑系 */
     --accent-color: #2e5c33; /* 濃い緑 */
+    --hirosakiS-color: #ff2222;
     --sakura-color: #e88bac; /* 桜色 */
     --koyo-color: #a0522d; /* 紅葉線（茶色） */
     --text-color: #333;
@@ -174,6 +175,7 @@ h3 {
 
 /* テーマ別路線カラー */
 .route-map.green-theme::before { background: var(--main-color); }
+.route-map.hirosakiS-theme::before {background: var(--hirosakiS-color); }
 .route-map.pink-theme::before { background: var(--sakura-color); }
 .route-map.koyo-theme::before { background: var(--koyo-color); }
 
