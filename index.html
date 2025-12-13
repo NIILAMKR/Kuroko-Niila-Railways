@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黒子新桜鉄道 | 公式サイト</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
-</head>
 <body>
 
     <header class="site-header">
         <div class="header-container">
             <h1 class="logo">
                 <a href="#home">
-                    <img src="KNR 黒子新桜鉄道 (2).png" alt="黒子新桜鉄道 KNR 公式サイト" class="logo-img">
+                    <img src="KNR_logo.png" alt="黒子新桜鉄道 KNR 公式サイト" class="logo-img">
                 </a>
             </h1>
             <div class="header-right">
@@ -32,87 +25,16 @@
             </nav>
         </div>
     </header>
-    
+
     <main>
-        <section class="hero-section">
-            <div class="hero-content">
-                <h2>新緑の風、鉄路を駆ける。</h2>
-                <p>都市と自然を繋ぐ、黒子新桜のネットワーク。</p>
-            </div>
-        </section>
-
-        <section id="status" class="content-section">
-            <h3>運行情報</h3>
-            <div class="status-card normal">
-                <div class="status-icon">◎ 平常</div>
-                <div class="status-details">
-                    <h4>全線平常通り</h4>
-                    <p>現在、遅れや運休の情報はありません。</p>
-                </div>
-            </div>
-        </section>
-
         <section id="stations" class="content-section stations-section">
             <h3>路線図</h3>
             
             <div class="tabs">
-                <button class="tab-btn active" data-target="line-hirosaki">広崎新幹線［HS］</button>
-                <button class="tab-btn" data-target="line-sakura">桜ノ宮線 [S]</button>
-            </div>
+                </div>
 
             <div class="route-map-wrapper">
-                <div id="line-hirosaki" class="route-map-container active">
-                    <ul class="route-map">
-                        <li class="station-item">
-                            <span class="station-number">HS-01</span>
-                            <div class="station-dot big"></div>
-                            <div class="station-name"><ruby>白野<rt>しらの</rt></ruby></div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">K02</span>
-                            <div class="station-dot"></div>
-                            <div class="station-name"><ruby>北黒子<rt>きたくろこ</rt></ruby></div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">K03</span>
-                            <div class="station-dot transfer-dot"></div>
-                            <div class="station-name"><ruby>新桜橋<rt>しんさくらばし</rt></ruby></div>
-                            <div class="transfers"><span class="badge pink">乗換</span> 桜ノ宮線</div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">K04</span>
-                            <div class="station-dot"></div>
-                            <div class="station-name"><ruby>緑ヶ丘<rt>みどりがおか</rt></ruby></div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">K05</span>
-                            <div class="station-dot big"></div>
-                            <div class="station-name"><ruby>天空町<rt>てんくうまち</rt></ruby></div>
-                        </li>
-                    </ul>
                 </div>
-
-                <div id="line-sakura" class="route-map-container">
-                    <ul class="route-map sakura-theme">
-                        <li class="station-item">
-                            <span class="station-number">S01</span>
-                            <div class="station-dot transfer-dot"></div>
-                            <div class="station-name"><ruby>新桜橋<rt>しんさくらばし</rt></ruby></div>
-                            <div class="transfers"><span class="badge green">乗換</span> 黒子本線</div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">S02</span>
-                            <div class="station-dot"></div>
-                            <div class="station-name"><ruby>桜ノ宮<rt>さくらのみや</rt></ruby></div>
-                        </li>
-                        <li class="station-item">
-                            <span class="station-number">S03</span>
-                            <div class="station-dot big"></div>
-                            <div class="station-name"><ruby>夢見坂<rt>ゆめみざか</rt></ruby></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </section>
 
         <section id="fare" class="content-section fare-section">
@@ -124,13 +46,7 @@
                     <label for="destination-select">目的地を選択:</label>
                     <select id="destination-select">
                         <option value="" selected disabled>駅を選択してください</option>
-                        <option value="220">K02 北黒子</option>
-                        <option value="350">K03 新桜橋</option>
-                        <option value="420">K04 緑ヶ丘</option>
-                        <option value="580">K05 天空町</option>
-                        <option value="450">S02 桜ノ宮 (乗継)</option>
-                        <option value="600">S03 夢見坂 (乗継)</option>
-                    </select>
+                        </select>
                 </div>
                 
                 <div class="fare-result">
@@ -142,7 +58,7 @@
                 </div>
             </div>
         </section>
-
+        
     </main>
 
     <footer class="site-footer">
