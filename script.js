@@ -50,6 +50,17 @@ const ROUTE_DATA = [
             { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 1000 }
         ]
     },
+    // 黒沼線
+    {
+        id: 'kuronuma',
+        code: 'KN',
+        name: '黒沼線',
+        theme: 'kuronuma',
+        stations: [
+            {code: 'KN-01', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'T', 'ER'], priceIndex: 0},
+            {code: 'KN-02', name_jp: '黒沼', name_rt: 'くろぬま', type: 'normal', transfer: [], priceIndex: 200}
+        ]
+    }
 ];
 
 // 乗換加算運賃 (異なる路線の場合にプラスされる金額)
