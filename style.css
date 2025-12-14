@@ -176,7 +176,7 @@ h3 {
 /* テーマ別路線カラー */
 .route-map.green-theme::before { background: var(--main-color); }
 .route-map.hirosakiS-theme::before {background: var(--hirosakiS-color); }
-.route-map.pink-theme::before { background: var(--hirosakiM-color); }
+.route-map.hirosakiM-theme::before { background: var(--hirosakiM-color); }
 .route-map.koyo-theme::before { background: var(--koyo-color); }
 
 .station-item { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
@@ -188,7 +188,7 @@ h3 {
 /* テーマ別ドットカラー */
 .green-theme .station-dot { border-color: var(--main-color); }
 .hirosakiS-theme .station-dot { border-color: var(--hirosakiS-color); }
-.pink-theme .station-dot { border-color: var(--hirosakiM-color); }
+.hirosakiM-theme .station-dot { border-color: var(--hirosakiM-color); }
 .koyo-theme .station-dot { border-color: var(--koyo-color); }
 
 .station-name ruby { font-size: 1.1rem; font-weight: bold; }
@@ -199,7 +199,7 @@ h3 {
 .badge { background: #555; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
 .badge.green { background: var(--main-color); }
 .badge.hirosakiS { background: var(--hirosakiS-color); }
-.badge.pink { background: var(--sakura-color); }
+.badge.hirosakiM { background: var(--hirosakiM-color); }
 .badge.koyo { background: var(--koyo-color); }
 
 /* --- 運賃計算機 --- */
