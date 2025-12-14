@@ -47,14 +47,8 @@ const ROUTE_DATA = [
             { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'normal', transfer: [] }
             ]
     },
-// ====================================================================
-// KNR鉄道 ロジックエリア (ここは基本的に変更しないでください)
-// ====================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const tabsContainer = document.querySelector('.tabs');
-    const mapWrapper = document.querySelector('.route-map-wrapper');
+    ]
+// =====================================================================// KNR鉄道 ロジックエリア (ここは基本的に変更しないでください)く// ======================================================================document.addEventListener('DOMContentLoaded', () const tabsContainer = document.querySelector('.tabs');const mapWrapper = document.querySelector('.route-map-wrapper');
     const allStations = {}; 
 
     let isFirst = true;
