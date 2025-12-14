@@ -15,10 +15,10 @@ const ROUTE_DATA = [
         stations: [
             // priceIndexを調整することで、駅間の運賃を自由に設定できます
             { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'big', transfer: [], priceIndex: 0 },
-            { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [], priceIndex: 300 },
-            { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'big', transfer: ['ER', '海急'], priceIndex: 800 },
-            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['T', 'ER'], priceIndex: 1200 },
-            { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'], priceIndex: 1600 }
+            { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [], priceIndex: 800 },
+            { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'big', transfer: ['ER', '海急'], priceIndex: 1480 },
+            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['T', 'ER'], priceIndex: 2190 },
+            { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'], priceIndex: 2630}
         ]
     },
     // 広崎メトロ
