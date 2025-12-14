@@ -13,7 +13,7 @@
         <div class="header-container">
             <h1 class="logo">
                 <a href="#home">
-                    <img src="KNR_logo.png" alt="黒子新桜鉄道 公式サイト" class="logo-img">
+                    <img src="KNR 黒子新桜鉄道 (2).png" alt="黒子新桜鉄道 KNR 公式サイト" class="logo-img">
                 </a>
             </h1>
             <div class="header-right">
@@ -36,8 +36,8 @@
     <main>
         <section class="hero-section" id="home">
             <div class="hero-content">
-                <h2>都市と自然を繋ぐ、広崎のネットワーク。</h2>
-                <p>広崎新幹線、広崎メトロでお出かけください。</p>
+                <h2>新緑の風、鉄路を駆ける。</h2>
+                <p>都市と自然を繋ぐ、黒子新桜のネットワーク。</p>
             </div>
         </section>
 
@@ -54,24 +54,31 @@
 
         <section id="stations" class="content-section stations-section">
             <h3>路線図</h3>
-            
-            <div class="tabs">
-                </div>
-
-            <div class="route-map-wrapper">
-                </div>
+            <div class="tabs"></div>
+            <div class="route-map-wrapper"></div>
         </section>
 
         <section id="fare" class="content-section fare-section">
             <h3>運賃検索</h3>
-            <p class="section-lead">始発駅「白野 (H-01)」からの運賃を確認できます。</p>
+            <p class="section-lead">出発駅と到着駅を選択してください。</p>
             
             <div class="fare-calculator">
-                <div class="fare-input">
-                    <label for="destination-select">目的地を選択:</label>
-                    <select id="destination-select">
-                        <option value="" selected disabled>駅を選択してください</option>
+                <div class="route-selector">
+                    <div class="select-group">
+                        <label for="start-select">出発駅</label>
+                        <select id="start-select">
+                            <option value="" selected disabled>選択</option>
                         </select>
+                    </div>
+                    
+                    <div class="arrow-icon">➡</div>
+
+                    <div class="select-group">
+                        <label for="end-select">到着駅</label>
+                        <select id="end-select">
+                            <option value="" selected disabled>選択</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="fare-result">
@@ -88,7 +95,7 @@
 
     <footer class="site-footer" id="contact">
         <p>窓口情報: お問い合わせは0120-XXX-XXXまで</p>
-        <p>© 2025 広崎鉄道.</p>
+        <p>© 2025 黒子新桜鉄道 KNR.</p>
     </footer>
 
     <script src="script.js"></script>
