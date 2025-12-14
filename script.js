@@ -6,7 +6,7 @@
 // priceIndex: 基準となる運賃係数です。この数値の差額が運賃になります。
 // 例: H-01(0) から H-02(300) への運賃 = |300 - 0| = 300円
 const ROUTE_DATA = [
-    // ★広崎新幹線★
+    // 広崎新幹線
     {
         id: 'hirosakiS',
         code: 'H',
@@ -21,7 +21,7 @@ const ROUTE_DATA = [
             { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'], priceIndex: 1600 }
         ]
     },
-    // ★広崎メトロ★
+    // 広崎メトロ
     {
         id: 'hirosakiM',
         code: 'HM',
@@ -32,6 +32,17 @@ const ROUTE_DATA = [
             { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [], priceIndex: 200 },
             { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [], priceIndex: 400 }
+        ]
+    },
+    // 土崎本線
+    {
+        id: 'Tuchisaki',
+        code: 'T',
+        name :'土崎本線',
+        theme: 'Tuchisaki',
+        stations: [
+            {code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 0 },
+            {code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 200}
         ]
     },
 ];
