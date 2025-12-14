@@ -1,54 +1,56 @@
 // ====================================================================
-// KNR鉄道 データ定義エリア
+// 広崎鉄道 データ定義エリア
 // 今後の追加・変更は主にこのエリアで行います
 // ====================================================================
 
-// 1. 運賃データ (始発駅 K01/黒子中央 からの片道運賃)
+// 1. 運賃データ (始発駅 H-01/白野 または HM-01/広崎第一空港 からの片道運賃)
+// ※運賃計算機は、便宜的に FARE_DATA の最初の駅（H-01）以外の運賃を表示します。
 // Key: 駅ナンバリング, Value: 運賃(円)
 const FARE_DATA = {
-    // KNR既存路線 (始発駅 K01/黒子中央 からの運賃)
-    'K02': 220, 'K03': 350, 'K04': 420, 'K05': 580,
-    'S02': 450, 'S03': 600,
-    'R01': 300, 'R02': 500,
-
     // 広崎新幹線 (H線) - 仮運賃
-    'H-01': 1200, 'H-02': 1500, 'H-03': 2000, 'H-04': 2500, 'H-05': 3000,
+    'H-02': 300,  // 新示
+    'H-03': 600,  // 広崎
+    'H-04': 900,  // 黒子
+    'H-05': 1200, // 京園
+
     // 広崎メトロ (HM線) - 仮運賃
-    'HM-01': 800, 'HM-02': 950, 'HM-03': 1100,
+    'HM-02': 250, // MR広崎外園
+    'HM-03': 450, // 広崎中環
 };
 
 // 2. 路線データ
 // themeはCSS変数名（--theme-[name]）に紐づくシンプルな名前を使用してください。
 const ROUTE_DATA = [
+    // ★広崎新幹線★
     {
         id: 'hirosakiS',
         code: 'H',
         name: '広崎新幹線',
         theme: 'hirosakiS',
         stations: [
-            { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'normal', transfer: [] },
+            { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'big', transfer: [] }, // 始発駅
             { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [] },
-            // 乗換情報は、配列内に文字列の路線コードを記述 (例: ['ER', '海急'])
             { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'transfer', transfer: ['ER', '海急'] },
-            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER', 'T', 'K'] },
+            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER', 'T'] },
             { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'] }
         ]
     },
+    // ★広崎メトロ★
     {
         id: 'hirosakiM',
         code: 'HM',
         name: '広崎メトロ',
         theme: 'hirosakiM',
         stations: [
-            { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'normal', transfer: [] },
+            { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'big', transfer: [] }, // 始発駅
             { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [] },
-            { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'normal', transfer: [] },
-            { cpde: 'HM-04', name_jp: 'MR青旗', name_rt: 'MRあおはた', type: 'normal', transfer: [] }
+            { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [] }
         ]
     },
 ];
+
 // ====================================================================
-// KNR鉄道 ロジックエリア (ここは基本的に変更しないでください)
+// 広崎鉄道 ロジックエリア (ここは基本的に変更しないでください)
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // C. 路線図リスト（UL）の生成
         const ul = document.createElement('ul');
-        // ★修正：テーマクラスを簡素化 (例: route-map theme-green) ★
         ul.classList.add('route-map', `theme-${route.theme}`);
 
         route.stations.forEach(station => {
@@ -106,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 transfersDiv.classList.add('transfers');
                 
                 station.transfer.forEach(tCode => {
-                    // tCodeが路線コード（例: K, S, H, ERなど）と仮定
                     
                     // 乗換先のバッジクラスを決定
                     let badgeClass = 'default';
@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         badgeClass = transferRoute.theme; // 定義済み路線の場合
                     }
 
-                    // ★修正：CSSクラスに theme- を付けて色指定を簡素化★
                     transfersDiv.innerHTML += `<span class="badge theme-${badgeClass}">乗換</span> ${tCode}線 `;
                 });
                 
@@ -162,8 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
         selectElement.appendChild(option);
     }
     
-    // (計算ロジック、アニメーション関数、時計、スマホメニューは省略・変更なし)
-
     // 計算ロジック
     selectElement.addEventListener('change', (e) => {
         const value = e.target.value;
