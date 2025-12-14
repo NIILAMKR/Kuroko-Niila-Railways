@@ -44,7 +44,10 @@ const ROUTE_DATA = [
         stations: [
             { code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 200 },
-            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER'], priceIndex: 400}
+            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER'], priceIndex: 400 },
+            { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex: 600 },
+            { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex: 800 },
+            { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 1000 }
         ]
     },
 ];
