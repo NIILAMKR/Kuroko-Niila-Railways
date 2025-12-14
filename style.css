@@ -7,20 +7,17 @@
 
 :root {
     /* ★路線テーマカラー定義エリア★ */
-    /* 新しい路線を追加する場合、ここに --theme-[路線のtheme名] を追加 */
-    --theme-green: #7ab317;     /* 黒子本線 */
-    --theme-pink: #e88bac;      /* 桜ノ宮線 */
-    --theme-koyo: #a0522d;      /* 紅葉線 */
-    --theme-hirosakiS: #008cff; /* 広崎新幹線 */
+    --theme-hirosakiS: #008cff; /* 広崎新幹線 (メインカラーとして使用) */
     --theme-hirosakiM: #ff3366; /* 広崎メトロ */
     
     /* 基本・共通カラー */
-    --accent-color: #2e5c33; /* 濃い緑 (背景、フッターなど) */
+    --main-color: var(--theme-hirosakiS); /* サイトのメインカラーをH線に統一 */
+    --accent-color: #004d80; /* メインカラーの濃い色 */
     --text-color: #333;
     --bg-color: #f9fdf9;
     --white: #ffffff;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --default-line: #999; /* 未定義路線、乗換ドットの色 */
+    --default-line: #999; /* 外部路線、乗換ドットの色 */
 }
 
 body {
@@ -30,23 +27,116 @@ body {
     line-height: 1.6;
 }
 
-/* --- ヘッダー --- (省略) */
+a {
+    color: var(--main-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
+a:hover {
+    color: var(--accent-color);
+}
+
+/* --- ヘッダー --- */
 .site-header {
     background: var(--white);
-    /* ★修正：メインカラーをテーマ変数に統一★ */
-    border-bottom: 4px solid var(--theme-green);
+    border-bottom: 4px solid var(--main-color); /* H線の色を使用 */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-/* ... (ヘッダー、ナビゲーション、ヒーローは省略) ... */
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 0; 
+    margin: 0;
+}
+
+.logo-img {
+    height: 40px; 
+    width: auto;
+    display: block;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* 時計 */
+.clock-display {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    font-weight: bold;
+    margin-right: 30px;
+    letter-spacing: 0.1em;
+}
+
+.main-nav {
+    position: absolute; 
+    right: 20px;
+    top: 70px;
+    z-index: 999;
+}
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+}
+.nav-list a {
+    font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+.nav-list a:hover {
+    border-bottom-color: var(--main-color);
+}
+
+.menu-toggle { display: none; }
+
+/* --- メインコンテンツ共通 --- */
+.content-section { 
+    max-width: 900px; 
+    margin: 50px auto; 
+    padding: 0 20px; 
+}
+
+h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    border-left: 6px solid var(--main-color);
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+/* ヒーロー */
+.hero-section {
+    background: linear-gradient(rgba(0, 77, 128, 0.4), rgba(0, 77, 128, 0.4)), url('https://picsum.photos/1200/400?random=1&grayscale') center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+.hero-content h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.hero-content p { font-size: 1.2rem; }
 
 /* 運行情報 */
 .status-card {
     background: #f0fff0;
-    /* ★修正：メインカラーをテーマ変数に統一★ */
-    border-left: 5px solid var(--theme-green);
+    border-left: 5px solid var(--main-color);
     padding: 20px;
     display: flex;
     align-items: center;
@@ -54,24 +144,37 @@ body {
     box-shadow: var(--shadow);
 }
 .status-icon { 
-    /* ★修正：メインカラーをテーマ変数に統一★ */
-    background: var(--theme-green); 
+    background: var(--main-color); 
     color: white; 
     padding: 5px 12px; 
     border-radius: 4px; 
     font-weight: bold; 
 }
-/* ... (運行情報などは省略) ... */
 
 /* --- 路線図（タブと路線図の共通） --- */
-/* タブボタンのアクティブカラー */
-.tab-btn.active { 
-    /* ★修正：メインカラーをテーマ変数に統一★ */
-    background: var(--theme-green); 
-    color: white; 
-    font-weight: bold; 
+.route-map-wrapper {
+    background: white;
+    padding: 30px;
+    border-radius: 0 8px 8px 8px;
+    box-shadow: var(--shadow);
 }
-/* ... (他のタブスタイルは省略) ... */
+
+/* タブ切り替えボタン */
+.tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab-btn {
+    background: #eee;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.3s;
+}
+.tab-btn.active { background: var(--main-color); color: white; font-weight: bold; }
+.route-map-container { display: none; animation: fadeIn 0.5s; }
+.route-map-container.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 /* 路線図（縦型スタイル） */
 .route-map { list-style: none; padding: 0; margin: 0; position: relative; }
@@ -80,49 +183,63 @@ body {
 }
 
 /* ★路線テーマの線の色を自動適用するロジック★ */
-/* JSで付与される theme-[theme名] クラスに対応 */
-.route-map.theme-green::before { background: var(--theme-green); }
-.route-map.theme-pink::before { background: var(--theme-pink); }
-.route-map.theme-koyo::before { background: var(--theme-koyo); }
 .route-map.theme-hirosakiS::before { background: var(--theme-hirosakiS); }
 .route-map.theme-hirosakiM::before { background: var(--theme-hirosakiM); }
-/* 新しい路線を追加する場合は、:rootとここに追加してください */
+
 
 .station-item { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
+.station-number { width: 40px; text-align: right; font-weight: bold; color: #888; font-size: 0.9rem; margin-right: 10px; }
 .station-dot { width: 12px; height: 12px; background: white; border: 3px solid var(--default-line); border-radius: 50%; margin-right: 15px; }
 .station-dot.big { width: 16px; height: 16px; border-width: 4px; transform: translateX(-2px); }
-.station-dot.transfer-dot { border-color: #555; } /* 乗換駅ドットは固定色 */
-
+.station-dot.transfer-dot { border-color: #555; }
 
 /* ★路線テーマのドットの色を自動適用するロジック★ */
-/* JSで付与される theme-[theme名] クラスに対応 */
-.theme-green .station-dot { border-color: var(--theme-green); }
-.theme-pink .station-dot { border-color: var(--theme-pink); }
-.theme-koyo .station-dot { border-color: var(--theme-koyo); }
 .theme-hirosakiS .station-dot { border-color: var(--theme-hirosakiS); }
 .theme-hirosakiM .station-dot { border-color: var(--theme-hirosakiM); }
 
+.station-name ruby { font-size: 1.1rem; font-weight: bold; }
+.station-name rt { font-size: 0.6rem; color: #777; }
+
 /* 乗換バッジ */
-.badge { background: #555; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
+.transfers { margin-left: auto; font-size: 0.8rem; }
+.badge { color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
 
 /* ★乗換バッジの色を自動適用するロジック★ */
-.badge.theme-green { background: var(--theme-green); }
-.badge.theme-pink { background: var(--theme-pink); }
-.badge.theme-koyo { background: var(--theme-koyo); }
 .badge.theme-hirosakiS { background: var(--theme-hirosakiS); }
 .badge.theme-hirosakiM { background: var(--theme-hirosakiM); }
-.badge.theme-default { background: #999; } /* 外部路線用 */
+.badge.theme-default { background: var(--default-line); }
 
 /* --- 運賃計算機 --- */
+.fare-calculator {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid #eee;
+}
+.fare-input { margin-bottom: 20px; }
+select {
+    padding: 10px; font-size: 1rem; border: 2px solid #ddd; border-radius: 6px;
+    width: 100%; max-width: 300px; background: #fafafa;
+}
+.fare-result {
+    background: #f4f9f4; padding: 20px; border-radius: 8px; display: inline-block; min-width: 300px;
+}
+.fare-label { font-size: 0.9rem; color: #666; display: block; margin-bottom: 5px; }
 .fare-price-display { 
     font-size: 2.5rem; 
-    /* ★修正：メインカラーをテーマ変数に統一★ */
-    color: var(--theme-green); 
+    color: var(--main-color); 
     font-weight: bold; 
     font-family: 'Noto Serif JP', serif; 
     display: inline-block;
 }
-/* ... (フッターは省略) ... */
+.unit { font-size: 1rem; color: #333; margin-left: 5px; }
+.reset-btn {
+    display: block; margin: 15px auto 0; background: none; border: 1px solid #ccc; 
+    padding: 5px 15px; cursor: pointer; color: #666; border-radius: 4px;
+}
+.reset-btn:hover { background: #eee; }
 
 /* --- フッター --- */
 .site-footer { 
@@ -131,4 +248,64 @@ body {
     background: var(--accent-color); 
     color: white; 
     margin-top: 50px; 
+}
+
+/* --- レスポンシブ (モバイル対応) --- */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 10px 15px;
+    }
+    
+    .logo-img { height: 30px; }
+    .clock-display { font-size: 1rem; margin-right: 10px; }
+    
+    /* ナビゲーションを非表示にし、メニューボタンを有効化 */
+    .main-nav { 
+        position: absolute;
+        top: 50px; 
+        right: 15px;
+        box-shadow: var(--shadow);
+    }
+    .nav-list {
+        flex-direction: column;
+        background: var(--white);
+        padding: 10px 20px;
+        gap: 10px;
+        display: none; 
+    }
+    .nav-list.active {
+        display: flex;
+    }
+    .nav-list a {
+        display: block;
+        padding: 8px 0;
+        border-bottom: none;
+    }
+    
+    .menu-toggle { 
+        display: block; 
+        background: var(--main-color);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+
+    /* コンテンツの調整 */
+    .hero-section { height: 200px; }
+    .hero-content h2 { font-size: 1.8rem; }
+    .status-card { flex-direction: column; }
+    .status-icon { width: 100%; text-align: center; }
+    
+    /* 路線図の調整 */
+    .tabs { flex-wrap: wrap; }
+    .tab-btn { flex: 1 1 auto; }
+    .route-map-wrapper { padding: 15px; }
+    .station-number { width: 30px; font-size: 0.8rem; }
+    .station-dot { margin-right: 10px; }
+    .station-name ruby { font-size: 1rem; }
+    .transfers { position: absolute; right: 10px; top: 5px; background: none; padding: 0; }
+    .badge { margin-right: 0; }
 }
