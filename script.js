@@ -36,10 +36,10 @@ const ROUTE_DATA = [
     },
     // 土崎本線
     {
-        id: 'Tuchisaki',
+        id: 'tsuchisaki',
         code: 'T',
         name :'土崎本線',
-        theme: 'Tuchisaki',
+        theme: 'tsuchisaki',
         stations: [
             {code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 0 },
             {code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 200}
