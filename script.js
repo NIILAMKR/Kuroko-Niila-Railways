@@ -16,8 +16,8 @@ const ROUTE_DATA = [
             // priceIndexを調整することで、駅間の運賃を自由に設定できます
             { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [], priceIndex: 300 },
-            { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'transfer', transfer: ['ER', '海急'], priceIndex: 800 },
-            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['ER', 'T'], priceIndex: 1200 },
+            { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'big', transfer: ['ER', '海急'], priceIndex: 800 },
+            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['T', 'ER'], priceIndex: 1200 },
             { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'], priceIndex: 1600 }
         ]
     },
@@ -31,7 +31,8 @@ const ROUTE_DATA = [
             // メトロは少し安めに設定したい場合、差分を小さくします
             { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [], priceIndex: 200 },
-            { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [], priceIndex: 400 }
+            { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [], priceIndex: 400 },
+            { code: 'HM-04', name_jp: 'MR青旗', name_rt: 'MRあおはた', type: 'normal', transfer: [], priceIndex: 600}
         ]
     },
     // 土崎本線
@@ -42,7 +43,8 @@ const ROUTE_DATA = [
         theme: 'tsuchisaki',
         stations: [
             { code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 0 },
-            { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 200 }
+            { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 200 },
+            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER'], priceIndex: 400}
         ]
     },
 ];
