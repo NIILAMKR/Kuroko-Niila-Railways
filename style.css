@@ -125,7 +125,7 @@ h3 {
 .route-map::before { content: ''; position: absolute; top: 10px; bottom: 10px; left: 24px; width: 4px; z-index: 0; }
 .route-map.theme-hirosakiS::before { background: var(--theme-hirosakiS); }
 .route-map.theme-hirosakiM::before { background: var(--theme-hirosakiM); }
-.route-map.theme-tsuchisaki::before { background: var(--theme-tsuchisaki): }
+.route-map.theme-tsuchisaki::before { background: var(--theme-tsuchisaki); }
 
 .station-item { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
 .station-number { width: 40px; text-align: right; font-weight: bold; color: #888; font-size: 0.9rem; margin-right: 10px; }
