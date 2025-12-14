@@ -9,6 +9,7 @@
     /* 路線テーマ */
     --theme-hirosakiS: #008cff;
     --theme-hirosakiM: #ff3366;
+    --theme-tsuchisaki: #b88e1c;
     
     /* コーポレートカラー (KNR) */
     --brand-color: #7ab317; 
@@ -124,6 +125,7 @@ h3 {
 .route-map::before { content: ''; position: absolute; top: 10px; bottom: 10px; left: 24px; width: 4px; z-index: 0; }
 .route-map.theme-hirosakiS::before { background: var(--theme-hirosakiS); }
 .route-map.theme-hirosakiM::before { background: var(--theme-hirosakiM); }
+.route-map.theme-tsuchisaki::before { background: var(--theme-tsuchisaki): }
 
 .station-item { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
 .station-number { width: 40px; text-align: right; font-weight: bold; color: #888; font-size: 0.9rem; margin-right: 10px; }
@@ -132,12 +134,14 @@ h3 {
 .station-dot.transfer-dot { border-color: #555; }
 .theme-hirosakiS .station-dot { border-color: var(--theme-hirosakiS); }
 .theme-hirosakiM .station-dot { border-color: var(--theme-hirosakiM); }
+.theme-tsuchisaki .station-dot { border-color: var(--theme-tsuchisaki); }
 .station-name ruby { font-size: 1.1rem; font-weight: bold; }
 .station-name rt { font-size: 0.6rem; color: #777; }
 .transfers { margin-left: auto; font-size: 0.8rem; }
 .badge { color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
 .badge.theme-hirosakiS { background: var(--theme-hirosakiS); }
 .badge.theme-hirosakiM { background: var(--theme-hirosakiM); }
+.badge.theme-tsuchisaki { background: var(--theme-tsuchisaki); }
 .badge.theme-default { background: var(--default-line); }
 
 /* --- 運賃計算機 (Start/End 対応) --- */
