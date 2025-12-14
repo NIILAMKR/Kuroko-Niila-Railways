@@ -60,7 +60,7 @@ const ROUTE_DATA = [
             {code: 'KN-01', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'T', 'ER'], priceIndex: 2190 },
             {code: 'KN-02', name_jp: '黒沼', name_rt: 'くろぬま', type: 'normal', transfer: [], priceIndex: 2320 }
         ]
-    }
+    },
 ];
 
 // 乗換加算運賃 (異なる路線の場合にプラスされる金額)
