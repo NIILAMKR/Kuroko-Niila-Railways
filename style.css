@@ -9,7 +9,7 @@
     --main-color: #7ab317; /* 緑系 */
     --accent-color: #2e5c33; /* 濃い緑 */
     --hirosakiS-color: #ff2222; /* 広崎新幹線 */
-    --sakura-color: #e88bac; /* 桜色 */
+    --hirosakiM-color: #e88bac; /* 広崎メトロ */
     --koyo-color: #a0522d; /* 紅葉線（茶色） */
     --text-color: #333;
     --bg-color: #f9fdf9;
@@ -176,7 +176,7 @@ h3 {
 /* テーマ別路線カラー */
 .route-map.green-theme::before { background: var(--main-color); }
 .route-map.hirosakiS-theme::before {background: var(--hirosakiS-color); }
-.route-map.pink-theme::before { background: var(--sakura-color); }
+.route-map.pink-theme::before { background: var(--hirosakiM-color); }
 .route-map.koyo-theme::before { background: var(--koyo-color); }
 
 .station-item { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
@@ -188,7 +188,7 @@ h3 {
 /* テーマ別ドットカラー */
 .green-theme .station-dot { border-color: var(--main-color); }
 .hirosakiS-theme .station-dot { border-color: var(--hirosakiS-color); }
-.pink-theme .station-dot { border-color: var(--sakura-color); }
+.pink-theme .station-dot { border-color: var(--hirosakiM-color); }
 .koyo-theme .station-dot { border-color: var(--koyo-color); }
 
 .station-name ruby { font-size: 1.1rem; font-weight: bold; }
