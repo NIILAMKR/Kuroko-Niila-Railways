@@ -25,7 +25,7 @@ const ROUTE_DATA = [
             { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [], priceIndex: 200 },
             { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [], priceIndex: 400 },
-            { code: 'HM-04', name_jp: 'MR青旗', name_rt: 'MRあおはた', type: 'normal', transfer: [], priceIndex: 600}
+            { code: 'HM-04', name_jp: 'MR青旗', name_rt: 'MRあおはた', type: 'normal', transfer: [], priceIndex: 600 }
         ]
     },
     {
@@ -36,7 +36,7 @@ const ROUTE_DATA = [
         stations: [
             { code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 2440 },
             { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 2310 },
-            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H','KN','ER: 2190 },
+            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H','KN','ER'], priceIndex: 2190 },
             { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex: 2050 },
             { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex: 1900 },
             { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 1750 }
