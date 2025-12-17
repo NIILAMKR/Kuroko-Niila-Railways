@@ -3,39 +3,37 @@
 // ====================================================================
 
 // 路線データ & 運賃設定
-// priceIndex: 基準となる運賃係数です。この数値の差額が運賃になります。
-// 例: H-01(0) から H-02(300) への運賃 = |300 - 0| = 300円
+// priceIndex: ネットワーク全体での運賃基準値。
+// ★「黒子駅」は全路線で 2190 に統一されているため、どれを使っても計算結果は同じになります。
 const ROUTE_DATA = [
-    // 広崎新幹線
+    // ★広崎新幹線★
     {
         id: 'hirosakiS',
         code: 'H',
         name: '広崎新幹線',
         theme: 'hirosakiS',
         stations: [
-            // priceIndexを調整することで、駅間の運賃を自由に設定できます
             { code: 'H-01', name_jp: '白野', name_rt: 'しらの', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'H-02', name_jp: '新示', name_rt: 'しんじ', type: 'normal', transfer: [], priceIndex: 800 },
             { code: 'H-03', name_jp: '広崎', name_rt: 'ひろさき', type: 'big', transfer: ['ER', '海急'], priceIndex: 1480 },
-            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['T', 'ER'], priceIndex: 2190 },
+            { code: 'H-04', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['T', 'ER', 'KN'], priceIndex: 2190 },
             { code: 'H-05', name_jp: '京園', name_rt: 'よせと', type: 'big', transfer: ['ER都宮'], priceIndex: 2630}
         ]
     },
-    // 広崎メトロ
+    // ★広崎メトロ★
     {
         id: 'hirosakiM',
         code: 'HM',
         name: '広崎メトロ',
         theme: 'hirosakiM',
         stations: [
-            // メトロは少し安めに設定したい場合、差分を小さくします
             { code: 'HM-01', name_jp: '広崎第一空港', name_rt: 'ひろさきだいいちくうこう', type: 'big', transfer: [], priceIndex: 0 },
             { code: 'HM-02', name_jp: 'MR広崎外園', name_rt: 'MRひろさきがいえん', type: 'normal', transfer: [], priceIndex: 200 },
             { code: 'HM-03', name_jp: '広崎中環', name_rt: 'ひろさきセントラル', type: 'big', transfer: [], priceIndex: 400 },
             { code: 'HM-04', name_jp: 'MR青旗', name_rt: 'MRあおはた', type: 'normal', transfer: [], priceIndex: 600}
         ]
     },
-    // 土崎本線
+    // ★土崎本線★ (0になっていた箇所を補完しました)
     {
         id: 'tsuchisaki',
         code: 'T',
@@ -44,24 +42,28 @@ const ROUTE_DATA = [
         stations: [
             { code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 2440 },
             { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 2310 },
-            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER'], priceIndex: 2190 },
-            { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex: 0 },
-            { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex: 0 },
-            { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 0 }
+            { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER', 'KN'], priceIndex: 2190 },
+            // ↓ 数値を補完 (0のままだと計算がおかしくなるため)
+            { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex: 2050 },
+            { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex: 1900 },
+            { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 1750 }
         ]
     },
-    // 黒沼線
+    // ★黒沼線★
     {
         id: 'kuronuma',
         code: 'KN',
         name: '黒沼線',
         theme: 'kuronuma',
         stations: [
-            {code: 'KN-01', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'T', 'ER'], priceIndex: 2190 },
-            {code: 'KN-02', name_jp: '黒沼', name_rt: 'くろぬま', type: 'normal', transfer: [], priceIndex: 2320 }
+            { code: 'KN-01', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'T', 'ER'], priceIndex: 2190 },
+            { code: 'KN-02', name_jp: '黒沼', name_rt: 'くろぬま', type: 'normal', transfer: [], priceIndex: 2320 }
         ]
     },
 ];
+
+// 乗換加算運賃 (統一計算のため0として扱います)
+const TRANSFER_FEE = 0;
 
 // ====================================================================
 // ロジックエリア
@@ -98,9 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ul.classList.add('route-map', `theme-${route.theme}`);
 
         route.stations.forEach(station => {
-            // 駅データをリストに保存（路線コードも付与）
-            station.lineCode = route.code; 
-            allStationsList.push(station);
+            // 駅データをリストに保存
+            // 参照渡しによる混線防ぐためオブジェクトをコピー
+            const stationData = { ...station, lineCode: route.code, lineName: route.name };
+            allStationsList.push(stationData);
 
             // HTML生成
             const li = document.createElement('li');
@@ -121,8 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 transfersDiv.classList.add('transfers');
                 station.transfer.forEach(tCode => {
                     let badgeClass = 'default';
+                    // 路線コードからテーマカラーを探す
                     const transferRoute = ROUTE_DATA.find(r => r.code === tCode);
-                    if (transferRoute) badgeClass = transferRoute.theme;
+                    if (transferRoute) {
+                        badgeClass = transferRoute.theme;
+                    }
                     transfersDiv.innerHTML += `<span class="badge theme-${badgeClass}">乗換</span> ${tCode}線 `;
                 });
                 if (transfersDiv.innerHTML) li.appendChild(transfersDiv);
@@ -151,21 +157,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceDisplay = document.getElementById('price-display');
     const resetButton = document.getElementById('calc-reset');
 
-    // セレクトボックスに選択肢を追加
+    // ★修正ポイント: セレクトボックスの重複排除ロジック
     function populateSelects() {
-        allStationsList.forEach((station, index) => {
-            // valueにindex（配列の番号）を持たせる
-            const optionText = `${station.code} ${station.name_jp}`;
-            
-            const optStart = document.createElement('option');
-            optStart.value = index; 
-            optStart.textContent = optionText;
-            startSelect.appendChild(optStart);
+        // 追加済みの駅名を記録するセット
+        const addedStationNames = new Set();
 
-            const optEnd = document.createElement('option');
-            optEnd.value = index;
-            optEnd.textContent = optionText;
-            endSelect.appendChild(optEnd);
+        allStationsList.forEach((station, index) => {
+            // まだ追加されていない駅名の場合のみ追加する
+            if (!addedStationNames.has(station.name_jp)) {
+                
+                // 黒子のように複数路線にある場合は、路線コードではなく共通表記にする工夫
+                // transfer配列を持っている場合は「乗換」と表記するなど
+                let displayName = "";
+                if (station.transfer && station.transfer.length > 0) {
+                     displayName = `[乗換] ${station.name_jp}`;
+                } else {
+                     displayName = `${station.code} ${station.name_jp}`;
+                }
+
+                // option生成
+                const optStart = document.createElement('option');
+                optStart.value = index; // indexは「最初に見つかったその駅」の番号になります
+                optStart.textContent = displayName;
+                startSelect.appendChild(optStart);
+
+                const optEnd = document.createElement('option');
+                optEnd.value = index;
+                optEnd.textContent = displayName;
+                endSelect.appendChild(optEnd);
+
+                // 追加済みリストに登録
+                addedStationNames.add(station.name_jp);
+            }
         });
     }
     populateSelects();
@@ -184,25 +207,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const startStation = allStationsList[startIndex];
         const endStation = allStationsList[endIndex];
 
-        // 1. 基本運賃（priceIndexの差分）
-        // 路線が違う場合は、それぞれの路線の始点からの距離の差分などを考慮する必要がありますが、
-        // ここでは簡易的に「数値の差分」をベースにします。
-        // ※厳密な計算が必要な場合は、全通しのpriceIndexを設計するか、テーブルデータにする必要があります。
-        // 今回は「同一路線内」または「単純な加算」で処理します。
+        // 運賃計算
+        // 全路線で「黒子」駅のpriceIndexは「2190」で統一されているため、
+        // 重複排除して「H-04の黒子」が選ばれても、「T-03の黒子」として計算されても
+        // 数値上の結果は同じになります。
+        let fare = Math.abs(startStation.priceIndex - endStation.priceIndex);
 
-        let fare = 0;
-
-        if (startStation.lineCode === endStation.lineCode) {
-            // 同一路線：単純な引き算
-            fare = Math.abs(startStation.priceIndex - endStation.priceIndex);
-        } else {
-            // 異なる路線：それぞれのインデックスを足して、乗換料金を加算（簡易ロジック）
-            // 実用的には「接続駅」を経由する計算が必要ですが、コードが複雑になるため
-            // ここでは「両方のpriceIndexの合計 + 乗換料金」とします（または任意のロジックに変更可）
-            fare = startStation.priceIndex + endStation.priceIndex + TRANSFER_FEE;
-        }
-
-        // 最低運賃保証 (初乗り150円など)
+        // 最低運賃保証
         if (fare < 150) fare = 150;
 
         animateValue(priceDisplay, fare);
@@ -236,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     }
 
-    // 3. 時計 & スマホメニュー (変更なし)
+    // 3. 時計 & スマホメニュー
     const clockElement = document.getElementById('current-time');
     function updateClock() {
         const now = new Date();
