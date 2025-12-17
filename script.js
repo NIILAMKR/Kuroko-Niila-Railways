@@ -45,9 +45,9 @@ const ROUTE_DATA = [
             { code: 'T-01', name_jp: 'MR土都', name_rt: 'MRつちみや', type: 'big', transfer: [], priceIndex: 2440 },
             { code: 'T-02', name_jp: '彩都', name_rt: 'あやと', type: 'normal', transfer: [], priceIndex: 2310 },
             { code: 'T-03', name_jp: '黒子', name_rt: 'くろこ', type: 'big', transfer: ['H', 'ER'], priceIndex: 2190 },
-            { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex:  },
-            { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex:  },
-            { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex:  }
+            { code: 'T-04', name_jp: '島洲', name_rt: 'します', type: 'normal', transfer: [], priceIndex: 0 },
+            { code: 'T-05', name_jp: 'MR新大宮', name_rt: 'MRしんおおみや', type: 'normal', transfer: [], priceIndex: 0 },
+            { code: 'T-06', name_jp: 'MR新広崎', name_rt: 'MRしんひろさき', type: 'normal', transfer: [], priceIndex: 0 }
         ]
     },
     // 黒沼線
@@ -62,9 +62,6 @@ const ROUTE_DATA = [
         ]
     },
 ];
-
-// 乗換加算運賃 (異なる路線の場合にプラスされる金額)
-const TRANSFER_FEE = 200;
 
 // ====================================================================
 // ロジックエリア
